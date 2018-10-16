@@ -131,7 +131,7 @@
                               <Insets top="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#conjuntoV" prefHeight="14.0" prefWidth="78.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-background-color: grey; -fx-border-color: black;" text="Adicionar">
+                        <Button mnemonicParsing="false" onAction="#adicionaVertice" prefHeight="14.0" prefWidth="78.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-background-color: grey; -fx-border-color: black;" text="Adicionar">
                            <font>
                               <Font name="Georgia" size="13.0" />
                            </font>
@@ -211,7 +211,7 @@
                               <Font name="Georgia" size="30.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#adicionaListaAresta" prefHeight="14.0" prefWidth="78.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-background-color: grey; -fx-border-color: black;" text="Adicionar">
+                        <Button mnemonicParsing="false" onAction="#adicionaAresta" prefHeight="14.0" prefWidth="78.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-background-color: grey; -fx-border-color: black;" text="Adicionar">
                            <font>
                               <Font name="Georgia" size="13.0" />
                            </font>
