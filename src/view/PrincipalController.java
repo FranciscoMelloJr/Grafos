@@ -25,7 +25,6 @@ public class PrincipalController {
 
 	int w = 0, k = 1;
 	int i = 1, j = 1;
-	String listaAresta[][] = new String[20][3];
 
 	ArrayList<String> verticeLista = new ArrayList<String>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
@@ -35,6 +34,23 @@ public class PrincipalController {
 	String matrizIncidencia[][] = new String[10][20];
 	String auxValor[] = new String[20];
 
+	public void calculaListaAresta() {
+		System.out.println("-----Lista de Arestas-----");
+		Aresta listaAresta[] = new Aresta[arestaLista.size()];
+		for (int i = 0; i < arestaLista.size(); i++) {
+			if (!ckValorado.isSelected()) {
+				for (j = 0; j < arestaLista.size(); j++)
+					if (listaAresta[j].toString() == arestaLista.get(i).toString())
+						listaAresta[j].setValor(listaAresta[j].getValor() + 1);
+					else {
+						listaAresta[i] = arestaLista.get(i);
+						listaAresta[i].setValor(1);
+					}
+			} else
+				System.out.println(arestaLista.get(i).toString());
+		}
+	}
+
 	public void calculaMatrizAdjacencia() {
 
 		String matrizAdjacencia[][] = new String[verticeLista.size() + 1][verticeLista.size() + 1];
@@ -43,35 +59,43 @@ public class PrincipalController {
 		for (Aresta a : arestaLista) {
 			for (int x = 0; x < verticeLista.size(); x++)
 				if (a.getOrigem().equals(verticeLista.get(x)))
-					indiceX = x+1;
+					indiceX = x + 1;
 			for (int y = 0; y < verticeLista.size(); y++)
 				if (a.getDestino().equals(verticeLista.get(y)))
-					indiceY = y+1;
+					indiceY = y + 1;
+			if ((matrizAdjacencia[indiceX][indiceY] != null)) {
+				int arestas = Integer.parseInt(matrizAdjacencia[indiceX][indiceY]);
+				arestas++;
+				matrizAdjacencia[indiceX][indiceY] = String.valueOf(arestas);
+			} else
+				matrizAdjacencia[indiceX][indiceY] = "1";
+			if (ckValorado.isSelected())
+				matrizAdjacencia[indiceX][indiceY] = String.valueOf(a.getValor());
 			if (!ckOrientado.isSelected()) {
-				matrizAdjacencia[indiceX][indiceY] = String.valueOf(matrizAdjacencia[indiceX][indiceY]+1);
-				matrizAdjacencia[indiceY][indiceX] = String.valueOf(matrizAdjacencia[indiceY][indiceX]+1);
-				if (ckValorado.isSelected()) {
-					matrizAdjacencia[indiceX][indiceY] = String.valueOf(a.getValor());
+				if (matrizAdjacencia[indiceY][indiceX] != null) {
+					int aux = Integer.parseInt(matrizAdjacencia[indiceY][indiceX]);
+					if (indiceX != indiceY)
+						aux++;
+					matrizAdjacencia[indiceY][indiceX] = String.valueOf(aux);
+				} else
+					matrizAdjacencia[indiceY][indiceX] = "1";
+				if (ckValorado.isSelected())
 					matrizAdjacencia[indiceY][indiceX] = String.valueOf(a.getValor());
-				}
-			} else {
-				matrizAdjacencia[indiceX][indiceY] = String.valueOf(matrizAdjacencia[indiceX][indiceY]+1);
-				if (ckValorado.isSelected()) {
-					matrizAdjacencia[indiceX][indiceY] = String.valueOf(a.getValor());
-				}
 			}
 		}
-
 		System.out.println("-----Matriz Adjacência-----");
-		for (int k = 0; k < verticeLista.size() ; k++) {
-			matrizAdjacencia[0][k+1] = verticeLista.get(k);
-			matrizAdjacencia[k+1][0] = verticeLista.get(k);
+		for (int k = 0; k < verticeLista.size(); k++) {
+			matrizAdjacencia[0][k + 1] = verticeLista.get(k);
+			matrizAdjacencia[k + 1][0] = verticeLista.get(k);
 		}
 		matrizAdjacencia[0][0] = " ";
-		for (int i = 0; i <= matrizAdjacencia.length; i++) {
+		for (int i = 0; i < matrizAdjacencia.length; i++) {
 			for (int j = 0; j < matrizAdjacencia.length; j++) {
 				if (matrizAdjacencia[i][j] == null)
-					matrizAdjacencia[i][j] = "0";
+					if (ckValorado.isSelected())
+						matrizAdjacencia[i][j] = "X";
+					else
+						matrizAdjacencia[i][j] = "0";
 				System.out.print(matrizAdjacencia[i][j] + " ");
 			}
 			System.out.println("");
@@ -97,6 +121,17 @@ public class PrincipalController {
 					listaAdjacencia[y - 1][k] = txtOrigem.getText();
 				}
 			}
+		}
+
+		System.out.println("-----Lista de adjacência----");
+		for (int x = 0; x < i - 1; x++) {
+			listaAdjacencia[x][0] = vertice[x + 1] + "->";
+			for (int y = 0; y < listaAdjacencia.length; y++) {
+				if (listaAdjacencia[x][y] == null)
+					listaAdjacencia[x][y] = "";
+				System.out.print(listaAdjacencia[x][y] + " ");
+			}
+			System.out.println("");
 		}
 
 	}
@@ -131,36 +166,6 @@ public class PrincipalController {
 
 		w++;
 
-	}
-
-	@FXML
-	public void finalizar() {
-
-		calculaMatrizAdjacencia();
-		calculaListaAdjacencia();
-		calculaMatrizIncidencia();
-
-		System.out.println("-----Lista de Arestas-----");
-		for (int x = 0; x < w; x++) {
-			for (int y = 0; y < 3; y++) {
-				if ((y == 2) & (listaAresta[x][y] == null))
-					listaAresta[x][y] = "";
-				System.out.print(listaAresta[x][y] + " ");
-			}
-			System.out.println("");
-		}
-
-		System.out.println("-----Lista de adjacência----");
-		for (int x = 0; x < i - 1; x++) {
-			listaAdjacencia[x][0] = vertice[x + 1] + "->";
-			for (int y = 0; y < listaAdjacencia.length; y++) {
-				if (listaAdjacencia[x][y] == null)
-					listaAdjacencia[x][y] = "";
-				System.out.print(listaAdjacencia[x][y] + " ");
-			}
-			System.out.println("");
-		}
-
 		System.out.println("-----Matriz Incidência----");
 		matrizIncidencia[0][0] = " ";
 		for (int x = 0; x < i; x++) {
@@ -172,6 +177,17 @@ public class PrincipalController {
 			}
 			System.out.println("");
 		}
+
+	}
+
+	@FXML
+	public void finalizar() {
+
+		calculaListaAresta();
+		calculaMatrizAdjacencia();
+		calculaListaAdjacencia();
+		calculaMatrizIncidencia();
+
 	}
 
 	@FXML

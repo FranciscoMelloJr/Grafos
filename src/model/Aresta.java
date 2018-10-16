@@ -11,6 +11,16 @@ public class Aresta {
 	private StringProperty destino = new SimpleStringProperty("");
 	private IntegerProperty valor = new SimpleIntegerProperty(0);
 
+	public String nValorado() {
+		
+		return this.getOrigem() + " " + this.getDestino();
+	}
+
+	@Override
+	public String toString() {
+		return this.getOrigem() + " " + this.getDestino() + " " + this.getValor();
+	}
+
 	public final StringProperty origemProperty() {
 		return this.origem;
 	}

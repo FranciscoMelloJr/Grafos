@@ -35,66 +35,47 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label text="Tipo de Grafo">
+                        <Label text="Orientado">
                            <font>
                               <Font name="Georgia" size="22.0" />
                            </font>
                            <HBox.margin>
-                              <Insets bottom="5.0" left="10.0" top="5.0" />
+                              <Insets bottom="5.0" left="20.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <RadioButton mnemonicParsing="false" text="Não-Orientado">
+                        <RadioButton fx:id="ckOrientado" mnemonicParsing="false">
                            <font>
                               <Font size="14.0" />
                            </font>
                            <HBox.margin>
-                              <Insets bottom="5.0" left="15.0" top="10.0" />
+                              <Insets bottom="5.0" left="20.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <toggleGroup>
                               <ToggleGroup fx:id="Tipo" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="ckOrientado" mnemonicParsing="false" text="Orientando" toggleGroup="$Tipo">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </RadioButton>
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
                         <Label text="Valorado">
                            <font>
                               <Font name="Georgia" size="22.0" />
                            </font>
                            <HBox.margin>
-                              <Insets bottom="5.0" left="30.0" top="5.0" />
+                              <Insets bottom="5.0" left="40.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <RadioButton fx:id="ckValorado" mnemonicParsing="false" text="Sim">
+                        <RadioButton fx:id="ckValorado" mnemonicParsing="false">
                            <font>
                               <Font name="Georgia" size="14.0" />
                            </font>
                            <HBox.margin>
-                              <Insets bottom="5.0" left="40.0" top="10.0" />
+                              <Insets bottom="5.0" left="20.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <toggleGroup>
                               <ToggleGroup fx:id="Valorado" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="ckValorado1" mnemonicParsing="false" prefHeight="19.0" prefWidth="63.0" text="Não" toggleGroup="$Valorado">
-                           <font>
-                              <Font name="Georgia" size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="80.0" top="10.0" />
-                           </HBox.margin>
-                        </RadioButton>
                      </children>
                   </HBox>
+                  <HBox />
                   <HBox>
                      <children>
                         <Label text="Conjunto V">
@@ -231,7 +212,7 @@
                               <Insets bottom="20.0" left="20.0" top="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Label opacity="0.5" text="X : Aresta (valor ou nome)">
+                        <Label opacity="0.5" text="(X: Caso tenha valor)">
                            <font>
                               <Font name="Georgia" size="15.0" />
                            </font>
