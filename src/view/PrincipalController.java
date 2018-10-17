@@ -23,75 +23,94 @@ public class PrincipalController {
 	@FXML
 	TextField txtValor;
 
-	int w = 0, k = 1;
-	int i = 1, j = 1;
+	int w = 0;
+	int i = 1;
 
 	ArrayList<String> verticeLista = new ArrayList<String>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
 
 	String vertice[] = new String[20];
-	String listaAdjacencia[][] = new String[10][10];
 	String matrizIncidencia[][] = new String[10][20];
 	String auxValor[] = new String[20];
 
-	public void calculaListaAdjacencia() {
+	public void calculaMatrizIncidencia() {
 
-		ArrayList<Aresta> adjacenciaLista = new ArrayList<Aresta>();
+		String matrizIncidencia[][] = new String[verticeLista.size()+1][arestaLista.size()+1];
 
 		for (int i = 0; i < verticeLista.size(); i++) {
-			Aresta a = new Aresta();
-			a.setOrigem(verticeLista.get(i) + "->");
-			adjacenciaLista.add(a);
-			for (Aresta aresta : arestaLista) {
-				if (verticeLista.get(i).equals(aresta.getOrigem())) {
-					a.setDestino(a.getDestino() + " " + aresta.getDestino());
+			matrizIncidencia[i+1][0] = verticeLista.get(i);	
+		}
+			
+		for (int j = 0; j < arestaLista.size(); j++) {
+			matrizIncidencia[0][j+1] = arestaLista.get(j).nValorado();	
+		}
+	
+		
+		for (int i = 1; i < arestaLista.size(); i++) {
+			for (int j = 1; j < verticeLista.size(); j++) {
+				if (verticeLista.get(j-1).equals(arestaLista.get(i-1).getOrigem())) {
+					matrizIncidencia[j][i] = "1";
+				}
+				if (verticeLista.get(j-1).equals(arestaLista.get(i-1).getDestino())) {
+					matrizIncidencia[j][i] = "-1";
+				}
+				
+			}
+		}
+		
+		
+	
+		//indice da linha apenas
+		
+		int indiceV = 0;
+
+		for (int z = 1; z < auxValor.length; z++) {
+			if (txtValor.getText().equals(auxValor[z])) {
+				indiceV = z;
+			}
+
+		}
+		for (int x = 1; x < verticeLista.size(); x++) {
+			if (txtOrigem.getText().equals(vertice[x])) {
+				matrizIncidencia[x][indiceV] = "1";
+
+			}
+		}
+		for (int y = 1; y < verticeLista.size(); y++) {
+			if (txtDestino.getText().equals(vertice[y])) {
+				if (ckOrientado.isSelected()) {
+					matrizIncidencia[y][indiceV] = "-1";
+				} else {
+					matrizIncidencia[y][indiceV] = "1";
 				}
 			}
 		}
 
-		if (!ckOrientado.isSelected()) {
-			for (int j = 0; j < verticeLista.size(); j++) {
-				for (Aresta aresta : arestaLista) {
-					if (verticeLista.get(j).equals(aresta.getDestino())) {
-						adjacenciaLista.get(j).setOrigem(adjacenciaLista.get(j).getOrigem() + " " + aresta.getOrigem());
+		w++;
+		
+		
+		
+		
+		
+		
+		System.out.println("-----Matriz Incidência----");
+		matrizIncidencia[0][0] = " ";
+		for (int i = 0; i < verticeLista.size()+1; i++) {
+			for (int j = 0; j < arestaLista.size()+1; j++) {
+				if (matrizIncidencia[i][j] == null) {
+					if (ckValorado.isSelected()) {
+						matrizIncidencia[i][j] = " X ";
+					} else {
+						matrizIncidencia[i][j] = "0 ";
 					}
 				}
+				System.out.print(matrizIncidencia[i][j] + "  ");
 			}
+			System.out.println("");
 		}
-
-		System.out.println("-----Lista de adjacência----");
-		for (int k = 0; k < verticeLista.size(); k++) {
-			System.out.println(adjacenciaLista.get(k).nValorado());
-		}
+		
 	}
-
-	public void calculaListaAresta() {
-		System.out.println("-----Lista de Arestas-----");
-		ArrayList<Aresta> lista = arestaLista;
-
-		if (!ckValorado.isSelected()) {
-			for (int i = 0; i < arestaLista.size(); i++) {
-				for (Aresta aresta : lista) {
-					if (arestaLista.get(i).nValorado().equals(aresta.nValorado())) {
-						aresta.setValor(aresta.getValor() + 1);
-					}
-				}
-			}
-			for (int j = 0; j < lista.size(); j++) {
-				for (int l = 0; l < lista.size(); l++) {
-					if (lista.get(j).nValorado().equals(lista.get(l).nValorado())) {
-						if (lista.get(l).getValor() > 1) {
-							lista.remove(l);
-						}
-					}
-				}
-			}
-		}
-		for (int k = 0; k < lista.size(); k++) {
-			System.out.println(lista.get(k).toString());
-		}
-	}
-
+	
 	public void calculaMatrizAdjacencia() {
 
 		String matrizAdjacencia[][] = new String[verticeLista.size() + 1][verticeLista.size() + 1];
@@ -153,49 +172,63 @@ public class PrincipalController {
 			System.out.println("");
 		}
 	}
+	
+	public void calculaListaAdjacencia() {
 
-	public void calculaMatrizIncidencia() {
+		ArrayList<Aresta> adjacenciaLista = new ArrayList<Aresta>();
 
-		auxValor[w + 1] = txtValor.getText();
-		matrizIncidencia[0][w + 1] = txtValor.getText();
-		int indiceV = 0;
-
-		for (int z = 1; z < auxValor.length; z++) {
-			if (txtValor.getText().equals(auxValor[z])) {
-				indiceV = z;
-			}
-
-		}
-		for (int x = 1; x < verticeLista.size(); x++) {
-			if (txtOrigem.getText().equals(vertice[x])) {
-				matrizIncidencia[x][indiceV] = "1";
-
-			}
-		}
-		for (int y = 1; y < verticeLista.size(); y++) {
-			if (txtDestino.getText().equals(vertice[y])) {
-				if (ckOrientado.isSelected()) {
-					matrizIncidencia[y][indiceV] = "-1";
-				} else {
-					matrizIncidencia[y][indiceV] = "1";
+		for (int i = 0; i < verticeLista.size(); i++) {
+			Aresta a = new Aresta();
+			a.setOrigem(verticeLista.get(i) + "->");
+			adjacenciaLista.add(a);
+			for (Aresta aresta : arestaLista) {
+				if (verticeLista.get(i).equals(aresta.getOrigem())) {
+					a.setDestino(a.getDestino() + " " + aresta.getDestino());
 				}
 			}
 		}
 
-		w++;
-
-		System.out.println("-----Matriz Incidência----");
-		matrizIncidencia[0][0] = " ";
-		for (int x = 0; x < i; x++) {
-			matrizIncidencia[x][0] = vertice[x];
-			for (int y = 0; y <= w; y++) {
-				if (matrizIncidencia[x][y] == null)
-					matrizIncidencia[x][y] = "0";
-				System.out.print(matrizIncidencia[x][y] + " ");
+		if (!ckOrientado.isSelected()) {
+			for (int j = 0; j < verticeLista.size(); j++) {
+				for (Aresta aresta : arestaLista) {
+					if (verticeLista.get(j).equals(aresta.getDestino())) {
+						adjacenciaLista.get(j).setOrigem(adjacenciaLista.get(j).getOrigem() + " " + aresta.getOrigem());
+					}
+				}
 			}
-			System.out.println("");
 		}
 
+		System.out.println("-----Lista de adjacência----");
+		for (int k = 0; k < verticeLista.size(); k++) {
+			System.out.println(adjacenciaLista.get(k).nValorado());
+		}
+	}
+
+	public void calculaListaAresta() {
+		System.out.println("-----Lista de Arestas-----");
+		ArrayList<Aresta> lista = arestaLista;
+
+		if (!ckValorado.isSelected()) {
+			for (int i = 0; i < arestaLista.size(); i++) {
+				for (Aresta aresta : lista) {
+					if (arestaLista.get(i).nValorado().equals(aresta.nValorado())) {
+						aresta.setValor(aresta.getValor() + 1);
+					}
+				}
+			}
+			for (int j = 0; j < lista.size(); j++) {
+				for (int l = 0; l < lista.size(); l++) {
+					if (lista.get(j).nValorado().equals(lista.get(l).nValorado())) {
+						if (lista.get(l).getValor() > 1) {
+							lista.remove(l);
+						}
+					}
+				}
+			}
+		}
+		for (int k = 0; k < lista.size(); k++) {
+			System.out.println(lista.get(k).toString());
+		}
 	}
 
 	@FXML
@@ -224,12 +257,11 @@ public class PrincipalController {
 
 	}
 
-	@FXML //
+	@FXML 
 	public void adicionaVertice() {
 
 		verticeLista.add(txtVetor.getText());
 		i++;
-		j++;
 		txtVetor.setText("");
 
 	}
