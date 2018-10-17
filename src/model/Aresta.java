@@ -13,7 +13,7 @@ public class Aresta {
 
 	public String nValorado() {
 		
-		return this.getOrigem() + " " + this.getDestino();
+		return this.getOrigem() + "" + this.getDestino();
 	}
 
 	@Override
