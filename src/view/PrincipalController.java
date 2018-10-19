@@ -14,7 +14,7 @@ public class PrincipalController {
 	RadioButton ckValorado;
 
 	@FXML
-	TextField txtVetor;
+	TextField txtVertice;
 	@FXML
 	TextField txtOrigem;
 	@FXML
@@ -237,8 +237,8 @@ public class PrincipalController {
 	@FXML
 	public void adicionaVertice() {
 
-		verticeLista.add(txtVetor.getText());
-		txtVetor.setText("");
+		verticeLista.add(txtVertice.getText());
+		txtVertice.setText("");
 
 	}
 

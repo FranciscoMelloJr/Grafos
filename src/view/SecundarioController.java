@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Aresta;
+import model.Vertice;
 
 public class SecundarioController {
 
@@ -13,16 +16,39 @@ public class SecundarioController {
 	RadioButton ckOrientado;
 	
 	@FXML
-	TextField txtVetor;
+	TextField txtVertice;
 	@FXML
 	TextField txtOrigem;
 	@FXML
 	TextField txtDestino;
 	@FXML
 	TextField txtValor;
+	@FXML
+	TextField txtSource;
 
-	ArrayList<String> verticeLista = new ArrayList<String>();
+	@FXML
+	TableView<Vertice> tbl;
+	@FXML
+	TableColumn<Vertice, String> colNome;
+	@FXML
+	TableColumn<Vertice, Number> colDistancia;
+	@FXML
+	TableColumn<Vertice, String> colPath;
+	
+	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
+	
+	@FXML
+	public void initialize() {
+		inicializaTbl();
+	}
+
+	private void inicializaTbl() {
+		colNome.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
+		colDistancia.setCellValueFactory(cellData -> cellData.getValue().distanciaProperty());
+		colPath.setCellValueFactory(cellData -> cellData.getValue().pathProperty());
+
+	}
 	
 	@FXML
 	public void adicionaAresta() {
@@ -30,7 +56,7 @@ public class SecundarioController {
 		Aresta aresta = new Aresta();
 		aresta.setOrigem(txtOrigem.getText());
 		aresta.setDestino(txtDestino.getText());
-		aresta.setValor(0);
+		aresta.setValor(Integer.parseInt(txtValor.getText()));
 		arestaLista.add(aresta);
 		limpaTelaE();
 
@@ -39,11 +65,22 @@ public class SecundarioController {
 	@FXML
 	public void adicionaVertice() {
 
-		verticeLista.add(txtVetor.getText());
-		txtVetor.setText("");
-
+		Vertice vertice = new Vertice();
+		vertice.setNome(txtVertice.getText());
+		verticeLista.add(vertice);
+		txtVertice.setText("");
+		
 	}
 
+	@FXML
+	public void adicionaSource() {
+
+		Vertice source = new Vertice();
+
+
+
+	}
+	
 	@FXML
 	public void limpaTelaE() {
 
@@ -53,4 +90,9 @@ public class SecundarioController {
 
 	}
 
+	@FXML
+	public void finalizar() {
+
+		
+	}
 }

@@ -70,7 +70,7 @@
          <center>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <TabPane fx:id="tabPane" layoutX="3.0" prefHeight="275.0" prefWidth="575.0" style="-fx-border-color: black;" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TabPane fx:id="tabPane" layoutX="3.0" prefHeight="275.0" prefWidth="675.0" style="-fx-border-color: black;" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
