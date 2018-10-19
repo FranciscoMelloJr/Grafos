@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Aresta;
+import model.Fila;
 import model.Vertice;
 
 public class SecundarioController {
@@ -38,7 +39,8 @@ public class SecundarioController {
 	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
 	Vertice source = null;
-	
+	Fila fila = new Fila();
+
 	@FXML
 	public void initialize() {
 		inicializaTbl();
@@ -59,6 +61,16 @@ public class SecundarioController {
 		aresta.setDestino(txtDestino.getText());
 		aresta.setValor(Integer.parseInt(txtValor.getText()));
 		arestaLista.add(aresta);
+
+		for (Vertice vertice : verticeLista) {
+			if (vertice.getNome().equals(aresta.getOrigem()))
+				for (Vertice adjacente : verticeLista) {
+					if (aresta.getDestino().equals(adjacente.getNome())) {
+						vertice.getAdj().add(adjacente);
+						adjacente.getAdj().add(vertice);
+					}
+				}
+		}
 		limpaTelaE();
 
 	}
@@ -92,12 +104,24 @@ public class SecundarioController {
 
 	}
 
+	public void insereADJ(Vertice vertice) {
+
+		for (int i = 0; i < vertice.getAdj().size(); i++) {
+			if (!vertice.getAdj().get(i).isPerm()) {
+				fila.insere(vertice);
+			}
+		}
+	}
+
 	@FXML
 	public void finalizar() {
 
 		source.setDistancia(0);
-		
-		
-		
+		insereADJ(source);
+
+		while (!fila.vazia()) {
+			Vertice u = fila.remove();
+		}
+
 	}
 }

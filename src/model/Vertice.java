@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,10 +13,21 @@ public class Vertice {
 	private StringProperty path = new SimpleStringProperty("");
 	private IntegerProperty distancia = new SimpleIntegerProperty(999);
 	private boolean perm = false;
-	
-	
-	
-	
+	private ArrayList<Vertice> adj = new ArrayList<Vertice>();
+
+	@Override
+	public String toString() {
+		return "\nNome: " + nome + "\nPath: " + path + "\nDistancia: " + distancia + "\nPerm:" + perm;
+	}
+
+	public ArrayList<Vertice> getAdj() {
+		return adj;
+	}
+
+	public void setAdj(ArrayList<Vertice> adj) {
+		this.adj = adj;
+	}
+
 	public boolean isPerm() {
 		return perm;
 	}
@@ -50,7 +63,7 @@ public class Vertice {
 	public final StringProperty pathProperty() {
 		return this.path;
 	}
-	
+
 	public final String getPath() {
 		return this.pathProperty().get();
 	}
@@ -58,5 +71,5 @@ public class Vertice {
 	public final void setPath(final String path) {
 		this.pathProperty().set(path);
 	}
-	
+
 }
