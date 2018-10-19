@@ -52,18 +52,23 @@ public class SecundarioController {
 
 		source.setDistancia(0);
 		insereADJ(source);
-
-		while (!fila.vazia()) {
+		System.out.println(fila.tamanho());
+		System.out.println(source.getAdj());
+	
+		while (fila.tamanho() != 0) {
+			System.out.println(fila.tamanho());
 			Vertice atual = fila.remove();
 			for (int i = 0; i < atual.getAdj().size(); i++) {
+				System.out.println("PRIMEIRO FOR");
 				for (Aresta aresta : arestaLista) {
 					if ((atual.getNome().equals(aresta.getOrigem()))
 							&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
-
+						System.out.println("VERTICE E ARESTAS COMPARA");
 						for (Vertice vertice : verticeLista) {
 							if (vertice.getNome().equals(atual.getAdj().get(i).getNome())) {
 
 								if (atual.getDistancia() + aresta.getValor() < vertice.getDistancia()) {
+									System.out.println("ENTRA PRA ALTERAR");
 									vertice.setDistancia((atual.getDistancia() + aresta.getValor()));
 									vertice.setPath(atual.getNome());
 								}
@@ -73,7 +78,9 @@ public class SecundarioController {
 
 				}
 			}
+			atual.setPerm(true);
 			insereADJ(atual);
+			System.out.println("Loop aqui");
 		}
 		tbl.setItems(FXCollections.observableArrayList(verticeLista));
 	}

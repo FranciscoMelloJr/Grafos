@@ -24,6 +24,7 @@ public class Fila {
 				} else {
 					atual.proximo = novo;
 					novo.anterior = atual;
+					tamanho++;
 				}
 			}
 		}
@@ -60,10 +61,6 @@ public class Fila {
 		inicio = inicio.proximo;
 		tamanho--;
 		return v;
-	}
-
-	public Vertice frente() {
-		return inicio.vertice;
 	}
 
 	public int tamanho() {
