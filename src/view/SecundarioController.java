@@ -2,6 +2,7 @@ package view;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -74,7 +75,7 @@ public class SecundarioController {
 			}
 			insereADJ(atual);
 		}
-
+		tbl.setItems(FXCollections.observableArrayList(verticeLista));
 	}
 
 	private void inicializaTbl() {
@@ -124,6 +125,7 @@ public class SecundarioController {
 				source = vertice;
 			}
 		}
+		txtSource.setText("");
 	}
 
 	@FXML
