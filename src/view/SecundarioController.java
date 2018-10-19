@@ -46,6 +46,37 @@ public class SecundarioController {
 		inicializaTbl();
 	}
 
+	@FXML
+	public void finalizar() {
+
+		source.setDistancia(0);
+		insereADJ(source);
+
+		while (!fila.vazia()) {
+			Vertice atual = fila.remove();
+			for (int i = 0; i < atual.getAdj().size(); i++) {
+				for (Aresta aresta : arestaLista) {
+					if ((atual.getNome().equals(aresta.getOrigem()))
+							&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
+
+						for (Vertice vertice : verticeLista) {
+							if (vertice.getNome().equals(atual.getAdj().get(i).getNome())) {
+
+								if (atual.getDistancia() + aresta.getValor() < vertice.getDistancia()) {
+									vertice.setDistancia((atual.getDistancia() + aresta.getValor()));
+									vertice.setPath(atual.getNome());
+								}
+							}
+						}
+					}
+
+				}
+			}
+			insereADJ(atual);
+		}
+
+	}
+
 	private void inicializaTbl() {
 		colNome.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
 		colDistancia.setCellValueFactory(cellData -> cellData.getValue().distanciaProperty());
@@ -113,15 +144,4 @@ public class SecundarioController {
 		}
 	}
 
-	@FXML
-	public void finalizar() {
-
-		source.setDistancia(0);
-		insereADJ(source);
-
-		while (!fila.vazia()) {
-			Vertice u = fila.remove();
-		}
-
-	}
 }
