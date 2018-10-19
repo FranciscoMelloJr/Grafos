@@ -57,9 +57,16 @@ public class Fila {
 	}
 
 	public Vertice remove() {
-		Vertice v = inicio.vertice;
-		inicio = inicio.proximo;
-		tamanho--;
+
+		Vertice v = atual.vertice;
+		// Vertice v = inicio.vertice;
+		do {
+			if (v.isPerm()) {
+				atual = atual.proximo;
+			}
+			// inicio = inicio.proximo;
+			tamanho--;
+		} while (atual.proximo != null);
 		return v;
 	}
 

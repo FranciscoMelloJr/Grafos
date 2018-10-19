@@ -50,11 +50,6 @@ public class SecundarioController {
 	@FXML
 	public void finalizar() {
 
-		source.setDistancia(0);
-		insereADJ(source);
-		System.out.println(fila.tamanho());
-		System.out.println(source.getAdj());
-	
 		while (fila.tamanho() != 0) {
 			System.out.println(fila.tamanho());
 			Vertice atual = fila.remove();
@@ -75,7 +70,6 @@ public class SecundarioController {
 							}
 						}
 					}
-
 				}
 			}
 			atual.setPerm(true);
@@ -85,10 +79,28 @@ public class SecundarioController {
 		tbl.setItems(FXCollections.observableArrayList(verticeLista));
 	}
 
-	private void inicializaTbl() {
-		colNome.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
-		colDistancia.setCellValueFactory(cellData -> cellData.getValue().distanciaProperty());
-		colPath.setCellValueFactory(cellData -> cellData.getValue().pathProperty());
+	public void insereADJ(Vertice vertice) {
+
+		for (int i = 0; i < vertice.getAdj().size(); i++) {
+			if (!vertice.getAdj().get(i).isPerm()) {
+				fila.insere(vertice);
+			}
+		}
+	}
+
+	@FXML
+	public void adicionaSource() {
+
+		for (Vertice vertice : verticeLista) {
+			if (vertice.getNome().equals(txtSource.getText())) {
+				source = vertice;
+			}
+		}
+		source.setDistancia(0);
+		insereADJ(source);
+		txtSource.setText("");
+		
+		System.out.println(source.getAdj());
 
 	}
 
@@ -124,15 +136,11 @@ public class SecundarioController {
 
 	}
 
-	@FXML
-	public void adicionaSource() {
+	private void inicializaTbl() {
+		colNome.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
+		colDistancia.setCellValueFactory(cellData -> cellData.getValue().distanciaProperty());
+		colPath.setCellValueFactory(cellData -> cellData.getValue().pathProperty());
 
-		for (Vertice vertice : verticeLista) {
-			if (vertice.getNome().equals(txtSource.getText())) {
-				source = vertice;
-			}
-		}
-		txtSource.setText("");
 	}
 
 	@FXML
@@ -143,14 +151,4 @@ public class SecundarioController {
 		txtDestino.setText("");
 
 	}
-
-	public void insereADJ(Vertice vertice) {
-
-		for (int i = 0; i < vertice.getAdj().size(); i++) {
-			if (!vertice.getAdj().get(i).isPerm()) {
-				fila.insere(vertice);
-			}
-		}
-	}
-
 }
