@@ -14,7 +14,7 @@ public class SecundarioController {
 
 	@FXML
 	RadioButton ckOrientado;
-	
+
 	@FXML
 	TextField txtVertice;
 	@FXML
@@ -34,9 +34,10 @@ public class SecundarioController {
 	TableColumn<Vertice, Number> colDistancia;
 	@FXML
 	TableColumn<Vertice, String> colPath;
-	
+
 	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
+	Vertice source = null;
 	
 	@FXML
 	public void initialize() {
@@ -49,7 +50,7 @@ public class SecundarioController {
 		colPath.setCellValueFactory(cellData -> cellData.getValue().pathProperty());
 
 	}
-	
+
 	@FXML
 	public void adicionaAresta() {
 
@@ -69,18 +70,19 @@ public class SecundarioController {
 		vertice.setNome(txtVertice.getText());
 		verticeLista.add(vertice);
 		txtVertice.setText("");
-		
+
 	}
 
 	@FXML
 	public void adicionaSource() {
 
-		Vertice source = new Vertice();
-
-
-
+		for (Vertice vertice : verticeLista) {
+			if (vertice.getNome().equals(txtSource.getText())) {
+				source = vertice;
+			}
+		}
 	}
-	
+
 	@FXML
 	public void limpaTelaE() {
 
@@ -93,6 +95,9 @@ public class SecundarioController {
 	@FXML
 	public void finalizar() {
 
+		source.setDistancia(0);
+		
+		
 		
 	}
 }

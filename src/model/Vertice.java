@@ -9,8 +9,11 @@ public class Vertice {
 
 	private StringProperty nome = new SimpleStringProperty("");
 	private StringProperty path = new SimpleStringProperty("");
-	private IntegerProperty distancia = new SimpleIntegerProperty(0);
+	private IntegerProperty distancia = new SimpleIntegerProperty(999);
 	private boolean perm = false;
+	
+	
+	
 	
 	public boolean isPerm() {
 		return perm;
