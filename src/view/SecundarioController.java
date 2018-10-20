@@ -94,7 +94,7 @@ public class SecundarioController {
 
 		for (int i = 0; i < vertice.getAdj().size(); i++) {
 			if (!vertice.getAdj().get(i).isPerm()) {
-				System.out.print("Adicionou adjacente");
+				System.out.println("Adicionou adjacente");
 				fila.insere(vertice.getAdj().get(i));
 			}
 		}

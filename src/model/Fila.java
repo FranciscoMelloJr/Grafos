@@ -17,7 +17,7 @@ public class Fila {
 
 		int i;
 		atual = inicio;
-		for (i = 0; i < this.tamanho; i++) {
+		for (i = 1; i <= this.tamanho; i++) {
 			System.out.println("Valor de i" + i);
 			System.out.println("Distancia do novo vertice: " + novo.vertice.getDistancia());
 			System.out.println("Distancia do vertice atual: " + atual.vertice.getDistancia());
@@ -29,21 +29,24 @@ public class Fila {
 					System.out.println("--Entrou no final--");
 					atual.proximo = novo;
 					novo.anterior = atual;
+					break;
 				}
+			} else {
+				if (inicio.vertice.getNome().equals(atual.vertice.getNome())) {
+					inicio.anterior = novo;
+					novo.proximo = inicio;
+					inicio = novo;
+					System.out.println("--Inicio se tornou o novo--");
+				} else {
+					System.out.println("-- i menor que o tamanho, (não é o ultimo)-- ");
+					temp = atual.anterior;
+					atual.anterior = novo;
+					novo.anterior = temp;
+					novo.anterior.proximo = novo;
+					novo.proximo = atual;
+				}
+				break;
 			}
-		}
-
-		if (i < this.tamanho - 1) {
-			System.out.println("-- i menor que o tamanho, (não é o ultimo)-- ");
-			if (atual.vertice.getDistancia() > novo.vertice.getDistancia()) {
-				inicio = novo;
-				System.out.println("--Inicio se tornou o novo--");
-			}
-			temp = atual.anterior;
-			atual.anterior = novo;
-			novo.anterior = temp;
-			novo.anterior.proximo = novo;
-			novo.proximo = atual;
 		}
 	}
 
