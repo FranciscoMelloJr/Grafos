@@ -86,6 +86,24 @@ public class Fila {
 		return v;
 	}
 
+	public boolean verificaIgual(String vertice) {
+
+		boolean adiciona = false;
+
+		if (this.vazia()) {
+			return adiciona;
+		} else {
+			temp = inicio;
+			for (int i = 0; i < this.tamanho; i++) {
+				if (vertice.equals(temp.vertice.getNome())) {
+					adiciona = true;
+				}
+				temp = temp.proximo;
+			}
+			return adiciona;
+		}
+	}
+
 	public int tamanho() {
 		return tamanho;
 	}

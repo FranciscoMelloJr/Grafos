@@ -49,11 +49,11 @@ public class SecundarioController {
 
 	@FXML
 	public void finalizar() {
-		System.out.println("!!!!!!!!!!---LOG-----!!!!!!!!!!)");
-		Vertice atual = null;
-		System.out.println(fila.tamanho());
+		System.out.println("!!!!!!!!!!---LOG-----!!!!!!!!!!");
+		// Vertice atual = null;
+		System.out.println("Tamanho da fila antes da repetição: " + fila.tamanho());
 		while (fila.tamanho() != 0) {
-			atual = fila.remove();
+			Vertice atual = fila.remove();
 			System.out.println("Tamanho da fila: " + fila.tamanho());
 			System.out.println("Nome do atual: " + atual.getNome());
 			insereADJ(atual);
@@ -94,8 +94,10 @@ public class SecundarioController {
 
 		for (int i = 0; i < vertice.getAdj().size(); i++) {
 			if (!vertice.getAdj().get(i).isPerm()) {
-				System.out.println("-- Adicionou adjacente-- ");
-				fila.insere(vertice.getAdj().get(i));
+					if (!(fila.verificaIgual((vertice.getAdj().get(i).getNome())))) {
+						System.out.println("-- Adicionou adjacente-- ");
+						fila.insere(vertice.getAdj().get(i));
+					}
 			}
 		}
 	}
@@ -109,9 +111,14 @@ public class SecundarioController {
 			}
 		}
 		source.setDistancia(0);
-		txtSource.setText("");
+		source.setPerm(true);
 		fila.insere(source);
+		txtSource.setText("");
 
+		for (Vertice vertice : verticeLista) {
+			System.out.println("VERTICE DO FOR EACH: " + vertice.getNome());
+			System.out.println("Adj do vertice: " + vertice.getNome() + ":>  " + vertice.getAdj().toString());
+		}
 	}
 
 	@FXML
@@ -137,12 +144,7 @@ public class SecundarioController {
 				}
 			}
 		}
-		for (Vertice vertice : verticeLista) {
-			System.out.println("VERTICE DO FOR EACH: " + vertice.getNome());
-			System.out.println("Adj do vertice: " + vertice.getNome() + ":>  " + vertice.getAdj().toString());
-		}
 		limpaTelaE();
-
 	}
 
 	@FXML
