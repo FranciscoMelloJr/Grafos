@@ -23,7 +23,7 @@ public class Fila {
 			System.out.println("Distancia do vertice atual: " + atual.vertice.getDistancia());
 			if (novo.vertice.getDistancia() > atual.vertice.getDistancia()) {
 				if (atual.proximo != null) {
-					System.out.println("navegando pelo atual: " + i);
+					System.out.println("Navegando pelo atual: " + i);
 					atual = atual.proximo;
 				} else {
 					System.out.println("--Entrou no final--");

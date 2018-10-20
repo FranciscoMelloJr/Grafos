@@ -60,17 +60,17 @@ public class SecundarioController {
 			for (int i = 0; i < atual.getAdj().size(); i++) {
 				System.out.println("--Primeiro FOR--");
 				for (Aresta aresta : arestaLista) {
-					System.out.println("Nome do atual: " + atual.getNome() + "Aresta origem: " + aresta.getOrigem());
-					System.out.println("Nome ADJ do atual: " + atual.getAdj().get(i).getNome() + "Aresta destino: "
+					System.out.println("Nome do atual: " + atual.getNome() + " Aresta origem: " + aresta.getOrigem());
+					System.out.println("Nome ADJ do atual: " + atual.getAdj().get(i).getNome() + " Aresta destino: "
 							+ aresta.getDestino());
 					if ((atual.getNome().equals(aresta.getOrigem()))
 							&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
 						System.out.println("--Compara Vertice E Arestas--");
 						for (Vertice vertice : verticeLista) {
-							System.out.println("Nome do vertice: " + vertice.getNome() + "Nome do atual ADJ: "
+							System.out.println("Nome do vertice: " + vertice.getNome() + " Nome do atual ADJ: "
 									+ atual.getAdj().get(i).getNome());
 							if (vertice.getNome().equals(atual.getAdj().get(i).getNome())) {
-								System.out.println("Distancia atual :" + atual.getDistancia() + "+"
+								System.out.println("Distancia atual :" + atual.getDistancia() + " + "
 										+ " Valor da aresta " + aresta.getValor() + " <  Distancia do vertice "
 										+ vertice.getDistancia());
 								if (atual.getDistancia() + aresta.getValor() < vertice.getDistancia()) {
@@ -94,7 +94,7 @@ public class SecundarioController {
 
 		for (int i = 0; i < vertice.getAdj().size(); i++) {
 			if (!vertice.getAdj().get(i).isPerm()) {
-				System.out.println("Adicionou adjacente");
+				System.out.println("-- Adicionou adjacente-- ");
 				fila.insere(vertice.getAdj().get(i));
 			}
 		}
