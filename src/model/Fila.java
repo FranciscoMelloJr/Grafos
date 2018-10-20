@@ -18,14 +18,15 @@ public class Fila {
 		int i;
 		atual = inicio;
 		for (i = 0; i < this.tamanho; i++) {
-			System.out.println("Valor de i" +i);
-			System.out.println("Distancia do novo vertice " + novo.vertice.getDistancia());
-			System.out.println("Distancia do vertice atual " + atual.vertice.getDistancia());
+			System.out.println("Valor de i" + i);
+			System.out.println("Distancia do novo vertice: " + novo.vertice.getDistancia());
+			System.out.println("Distancia do vertice atual: " + atual.vertice.getDistancia());
 			if (novo.vertice.getDistancia() > atual.vertice.getDistancia()) {
 				if (atual.proximo != null) {
-					System.out.println("navegando pelo atual " + i );
+					System.out.println("navegando pelo atual: " + i);
 					atual = atual.proximo;
-				} else { 	System.out.println("entro no final" );
+				} else {
+					System.out.println("--Entrou no final--");
 					atual.proximo = novo;
 					novo.anterior = atual;
 				}
@@ -33,10 +34,10 @@ public class Fila {
 		}
 
 		if (i < this.tamanho - 1) {
-			System.out.println("i menor que o tamanho, ñ é o ultimo" );
+			System.out.println("-- i menor que o tamanho, (não é o ultimo)-- ");
 			if (atual.vertice.getDistancia() > novo.vertice.getDistancia()) {
 				inicio = novo;
-				System.out.println("inicio se tornou o novo" );
+				System.out.println("--Inicio se tornou o novo--");
 			}
 			temp = atual.anterior;
 			atual.anterior = novo;
@@ -55,10 +56,10 @@ public class Fila {
 			temp = novo;
 			atual = novo;
 			tamanho++;
-			System.out.println("inserio no vazio" );
+			System.out.println("--Insere no vazio--");
 
 		} else {
-			System.out.println("Entro pra prioridade" );
+			System.out.println("--Entrou para prioridade--");
 			prioridade(novo);
 			tamanho++;
 		}
@@ -66,8 +67,8 @@ public class Fila {
 
 	public Vertice remove() {
 
-		System.out.println("tamanho no remove() " +tamanho);
-		System.out.println("nome do incio " + inicio.vertice.getNome() );
+		System.out.println("Tamanho no remove(): " + tamanho);
+		System.out.println("Nome do incio: " + inicio.vertice.getNome());
 		Vertice v = inicio.vertice;
 		inicio = inicio.proximo;
 		tamanho--;

@@ -21,7 +21,7 @@
                <children>
                   <HBox>
                      <children>
-                        <Label text="Trabalho 2 - Dijkstra" underline="true">
+                        <Label text="Protótipo - Dijkstra" underline="true">
                            <font>
                               <Font name="Georgia" size="30.0" />
                            </font>

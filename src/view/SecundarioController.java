@@ -58,20 +58,23 @@ public class SecundarioController {
 			System.out.println(atual.getNome());
 			insereADJ(atual);
 			for (int i = 0; i < atual.getAdj().size(); i++) {
-				System.out.println("PRIMEIRO FOR");
+				System.out.println("--Primeiro FOR--");
 				for (Aresta aresta : arestaLista) {
-					System.out.println("nome do atal" +atual.getNome() + " aresta oriem:" +aresta.getOrigem());
-					System.out.println("nome adj do atual" +atual.getAdj().get(i).getNome() + " aresta destino:" +aresta.getDestino());
+					System.out.println("Nome do atual: " + atual.getNome() + "Aresta origem: " + aresta.getOrigem());
+					System.out.println("Nome ADJ do atual: " + atual.getAdj().get(i).getNome() + "Aresta destino: "
+							+ aresta.getDestino());
 					if ((atual.getNome().equals(aresta.getOrigem()))
 							&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
-						System.out.println("VERTICE E ARESTAS COMPARA");
+						System.out.println("--Compara Vertice E Arestas--");
 						for (Vertice vertice : verticeLista) {
-							System.out.println("nome do vertice" + vertice.getNome()+ "atual adj nome" + atual.getAdj().get(i).getNome());
+							System.out.println("Nome do vertice: " + vertice.getNome() + "Nome do atual ADJ: "
+									+ atual.getAdj().get(i).getNome());
 							if (vertice.getNome().equals(atual.getAdj().get(i).getNome())) {
-								System.out.println("distancia atual :" + atual.getDistancia() +"+" +
-							"valor da aresta " + aresta.getValor() + " <  distancia do vertice" + vertice.getDistancia() );
+								System.out.println("Distancia atual :" + atual.getDistancia() + "+"
+										+ " Valor da aresta " + aresta.getValor() + " <  Distancia do vertice "
+										+ vertice.getDistancia());
 								if (atual.getDistancia() + aresta.getValor() < vertice.getDistancia()) {
-									System.out.println("ENTRA PRA ALTERAR");
+									System.out.println("--Entra pra Alterar--");
 									vertice.setDistancia((atual.getDistancia() + aresta.getValor()));
 									vertice.setPath(atual.getNome());
 								}
@@ -82,7 +85,7 @@ public class SecundarioController {
 			}
 
 			atual.setPerm(true);
-			System.out.println("Loop aqui");
+			System.out.println("Loop");
 		}
 		tbl.setItems(FXCollections.observableArrayList(verticeLista));
 	}
