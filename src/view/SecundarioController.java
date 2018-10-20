@@ -139,10 +139,7 @@ public class SecundarioController {
 		}
 		for (Vertice vertice : verticeLista) {
 			System.out.println("VERTICE DO FOR EACH: " + vertice.getNome());
-			for (int i = 0; i < vertice.getAdj().size(); i++) {
-				System.out.println("nome do vertice pego da lista : " + verticeLista.get(i).getNome());
-				System.out.println("Adj do vertice: " + vertice.getNome() + ":>  " + vertice.getAdj().toString());
-			}
+			System.out.println("Adj do vertice: " + vertice.getNome() + ":>  " + vertice.getAdj().toString());
 		}
 		limpaTelaE();
 
