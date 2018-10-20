@@ -50,13 +50,12 @@ public class SecundarioController {
 	@FXML
 	public void finalizar() {
 		System.out.println("!!!!!!!!!!---LOG-----!!!!!!!!!!");
-		// Vertice atual = null;
 		System.out.println("Tamanho da fila antes da repetição: " + fila.tamanho());
 		while (fila.tamanho() != 0) {
 			Vertice atual = fila.remove();
 			System.out.println("Tamanho da fila: " + fila.tamanho());
 			System.out.println("Nome do atual: " + atual.getNome());
-			insereADJ(atual);
+			// insereADJ(atual);
 			for (int i = 0; i < atual.getAdj().size(); i++) {
 				System.out.println("--Primeiro FOR--");
 				for (Aresta aresta : arestaLista) {
@@ -83,7 +82,7 @@ public class SecundarioController {
 					}
 				}
 			}
-
+			insereADJ(atual);
 			atual.setPerm(true);
 			System.out.println("Loop");
 		}
@@ -94,10 +93,10 @@ public class SecundarioController {
 
 		for (int i = 0; i < vertice.getAdj().size(); i++) {
 			if (!vertice.getAdj().get(i).isPerm()) {
-					if (!(fila.verificaIgual((vertice.getAdj().get(i).getNome())))) {
-						System.out.println("-- Adicionou adjacente-- ");
-						fila.insere(vertice.getAdj().get(i));
-					}
+				if (!(fila.verificaIgual((vertice.getAdj().get(i).getNome())))) {
+					System.out.println("-- Adicionou adjacente-- ");
+					fila.insere(vertice.getAdj().get(i));
+				}
 			}
 		}
 	}
