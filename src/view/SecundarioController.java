@@ -49,13 +49,13 @@ public class SecundarioController {
 
 	@FXML
 	public void finalizar() {
-
+		System.out.println("!!!!!!!!!!---LOG-----!!!!!!!!!!)");
 		Vertice atual = null;
 		System.out.println(fila.tamanho());
 		while (fila.tamanho() != 0) {
 			atual = fila.remove();
-			System.out.println(fila.tamanho());
-			System.out.println(atual.getNome());
+			System.out.println("Tamanho da fila: " + fila.tamanho());
+			System.out.println("Nome do atual: " + atual.getNome());
 			insereADJ(atual);
 			for (int i = 0; i < atual.getAdj().size(); i++) {
 				System.out.println("--Primeiro FOR--");
@@ -124,13 +124,25 @@ public class SecundarioController {
 		arestaLista.add(aresta);
 
 		for (Vertice vertice : verticeLista) {
-			if (vertice.getNome().equals(aresta.getOrigem()))
+			if (vertice.getNome().equals(aresta.getOrigem())) {
+				System.out.println(
+						"Nome do vertice1: " + vertice.getNome() + " Nome da origem da aresta: " + aresta.getOrigem());
 				for (Vertice adjacente : verticeLista) {
-					if (aresta.getDestino().equals(adjacente.getNome())) {
+					if (adjacente.getNome().equals(aresta.getDestino())) {
+						System.out.println("Nome do vertice2: " + adjacente.getNome() + "Nome do destino da aresta: "
+								+ aresta.getDestino());
 						vertice.getAdj().add(adjacente);
 						adjacente.getAdj().add(vertice);
 					}
 				}
+			}
+		}
+		for (Vertice vertice : verticeLista) {
+			System.out.println("VERTICE DO FOR EACH: " + vertice.getNome());
+			for (int i = 0; i < vertice.getAdj().size(); i++) {
+				System.out.println("nome do vertice pego da lista : " + verticeLista.get(i).getNome());
+				System.out.println("Adj do vertice: " + vertice.getNome() + ":>  " + vertice.getAdj().toString());
+			}
 		}
 		limpaTelaE();
 

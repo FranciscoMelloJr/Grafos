@@ -19,8 +19,10 @@ public class Fila {
 		atual = inicio;
 		for (i = 1; i <= this.tamanho; i++) {
 			System.out.println("Valor de i" + i);
-			System.out.println("Distancia do novo vertice: " + novo.vertice.getDistancia());
-			System.out.println("Distancia do vertice atual: " + atual.vertice.getDistancia());
+			System.out.println(
+					"Distancia do vertice " + novo.vertice.getNome() + "(novo): " + novo.vertice.getDistancia());
+			System.out.println(
+					"Distancia do vertice " + atual.vertice.getNome() + "(atual): " + atual.vertice.getDistancia());
 			if (novo.vertice.getDistancia() > atual.vertice.getDistancia()) {
 				if (atual.proximo != null) {
 					System.out.println("Navegando pelo atual: " + i);
