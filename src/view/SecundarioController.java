@@ -50,18 +50,26 @@ public class SecundarioController {
 	@FXML
 	public void finalizar() {
 
+		Vertice atual = null;
+		System.out.println(fila.tamanho());
 		while (fila.tamanho() != 0) {
+			atual = fila.remove();
 			System.out.println(fila.tamanho());
-			Vertice atual = fila.remove();
+			System.out.println(atual.getNome());
+			insereADJ(atual);
 			for (int i = 0; i < atual.getAdj().size(); i++) {
 				System.out.println("PRIMEIRO FOR");
 				for (Aresta aresta : arestaLista) {
+					System.out.println("nome do atal" +atual.getNome() + " aresta oriem:" +aresta.getOrigem());
+					System.out.println("nome adj do atual" +atual.getAdj().get(i).getNome() + " aresta destino:" +aresta.getDestino());
 					if ((atual.getNome().equals(aresta.getOrigem()))
 							&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
 						System.out.println("VERTICE E ARESTAS COMPARA");
 						for (Vertice vertice : verticeLista) {
+							System.out.println("nome do vertice" + vertice.getNome()+ "atual adj nome" + atual.getAdj().get(i).getNome());
 							if (vertice.getNome().equals(atual.getAdj().get(i).getNome())) {
-
+								System.out.println("distancia atual :" + atual.getDistancia() +"+" +
+							"valor da aresta " + aresta.getValor() + " <  distancia do vertice" + vertice.getDistancia() );
 								if (atual.getDistancia() + aresta.getValor() < vertice.getDistancia()) {
 									System.out.println("ENTRA PRA ALTERAR");
 									vertice.setDistancia((atual.getDistancia() + aresta.getValor()));
@@ -72,8 +80,8 @@ public class SecundarioController {
 					}
 				}
 			}
+
 			atual.setPerm(true);
-			insereADJ(atual);
 			System.out.println("Loop aqui");
 		}
 		tbl.setItems(FXCollections.observableArrayList(verticeLista));
@@ -83,7 +91,8 @@ public class SecundarioController {
 
 		for (int i = 0; i < vertice.getAdj().size(); i++) {
 			if (!vertice.getAdj().get(i).isPerm()) {
-				fila.insere(vertice);
+				System.out.print("Adicionou adjacente");
+				fila.insere(vertice.getAdj().get(i));
 			}
 		}
 	}
@@ -97,10 +106,8 @@ public class SecundarioController {
 			}
 		}
 		source.setDistancia(0);
-		insereADJ(source);
 		txtSource.setText("");
-		
-		System.out.println(source.getAdj());
+		fila.insere(source);
 
 	}
 

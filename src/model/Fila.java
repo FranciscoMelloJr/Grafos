@@ -10,7 +10,7 @@ public class Fila {
 	}
 
 	public boolean vazia() {
-		return inicio == null;
+		return atual == null;
 	}
 
 	public void prioridade(Elemento novo) {
@@ -18,27 +18,31 @@ public class Fila {
 		int i;
 		atual = inicio;
 		for (i = 0; i < this.tamanho; i++) {
+			System.out.println("Valor de i" +i);
+			System.out.println("Distancia do novo vertice " + novo.vertice.getDistancia());
+			System.out.println("Distancia do vertice atual " + atual.vertice.getDistancia());
 			if (novo.vertice.getDistancia() > atual.vertice.getDistancia()) {
 				if (atual.proximo != null) {
+					System.out.println("navegando pelo atual " + i );
 					atual = atual.proximo;
-				} else {
+				} else { 	System.out.println("entro no final" );
 					atual.proximo = novo;
 					novo.anterior = atual;
-					tamanho++;
 				}
 			}
 		}
 
 		if (i < this.tamanho - 1) {
+			System.out.println("i menor que o tamanho, ñ é o ultimo" );
 			if (atual.vertice.getDistancia() > novo.vertice.getDistancia()) {
 				inicio = novo;
+				System.out.println("inicio se tornou o novo" );
 			}
 			temp = atual.anterior;
 			atual.anterior = novo;
 			novo.anterior = temp;
 			novo.anterior.proximo = novo;
 			novo.proximo = atual;
-			tamanho++;
 		}
 	}
 
@@ -51,22 +55,28 @@ public class Fila {
 			temp = novo;
 			atual = novo;
 			tamanho++;
+			System.out.println("inserio no vazio" );
+
 		} else {
+			System.out.println("Entro pra prioridade" );
 			prioridade(novo);
+			tamanho++;
 		}
 	}
 
 	public Vertice remove() {
 
-		Vertice v = atual.vertice;
-		// Vertice v = inicio.vertice;
-		do {
-			if (v.isPerm()) {
-				atual = atual.proximo;
-			}
-			// inicio = inicio.proximo;
-			tamanho--;
-		} while (atual.proximo != null);
+		System.out.println("tamanho no remove() " +tamanho);
+		System.out.println("nome do incio " + inicio.vertice.getNome() );
+		Vertice v = inicio.vertice;
+		inicio = inicio.proximo;
+		tamanho--;
+
+		if (tamanho == 0) {
+			inicio = null;
+			atual = null;
+			temp = null;
+		}
 		return v;
 	}
 
