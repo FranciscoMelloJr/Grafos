@@ -47,6 +47,23 @@ public class SecundarioController {
 		inicializaTbl();
 	}
 
+	public void alteraDist(Vertice atual, Aresta aresta, int i) {
+
+		System.out.println("--Compara Vertice E Arestas--");
+		for (Vertice vertice : verticeLista) {
+			System.out.println("for do vertice para pegar o adjacente ");
+			if (vertice.getNome().equals(atual.getAdj().get(i).getNome())) {
+				System.out.println("Distancia atual :" + atual.getDistancia() + " + " + " Valor da aresta "
+						+ aresta.getValor() + " <  Distancia do vertice " + vertice.getDistancia());
+				if (atual.getDistancia() + aresta.getValor() < vertice.getDistancia()) {
+					System.out.println("--Entra pra Alterar--");
+					vertice.setDistancia((atual.getDistancia() + aresta.getValor()));
+					vertice.setPath(atual.getNome());
+				}
+			}
+		}
+	}
+
 	@FXML
 	public void finalizar() {
 		System.out.println("!!!!!!!!!!---LOG-----!!!!!!!!!!");
@@ -63,21 +80,17 @@ public class SecundarioController {
 								.println("Nome do atual: " + atual.getNome() + " Aresta origem: " + aresta.getOrigem());
 						System.out.println("Nome ADJ do atual: " + atual.getAdj().get(i).getNome() + " Aresta destino: "
 								+ aresta.getDestino());
-						if ((atual.getNome().equals(aresta.getOrigem()))
-								&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
-							System.out.println("--Compara Vertice E Arestas--");
-							for (Vertice vertice : verticeLista) {
-								System.out.println("for do vertice para pegar o adjacente ");
-								if (vertice.getNome().equals(atual.getAdj().get(i).getNome())) {
-									System.out.println("Distancia atual :" + atual.getDistancia() + " + "
-											+ " Valor da aresta " + aresta.getValor() + " <  Distancia do vertice "
-											+ vertice.getDistancia());
-									if (atual.getDistancia() + aresta.getValor() < vertice.getDistancia()) {
-										System.out.println("--Entra pra Alterar--");
-										vertice.setDistancia((atual.getDistancia() + aresta.getValor()));
-										vertice.setPath(atual.getNome());
-									}
-								}
+						if (ckOrientado.isSelected()) {
+							if ((atual.getNome().equals(aresta.getOrigem()))
+									&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
+								alteraDist(atual, aresta, i);
+							}
+						} else {
+							if ((atual.getNome().equals(aresta.getOrigem())
+									|| atual.getNome().equals(aresta.getDestino()))
+									&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino())
+											|| atual.getAdj().get(i).getNome().equals(aresta.getOrigem()))) {
+								alteraDist(atual, aresta, i);
 							}
 						}
 					}
