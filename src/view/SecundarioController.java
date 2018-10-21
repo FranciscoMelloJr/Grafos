@@ -39,7 +39,6 @@ public class SecundarioController {
 
 	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
-	Vertice source = null;
 	Fila fila = new Fila();
 
 	@FXML
@@ -47,39 +46,14 @@ public class SecundarioController {
 		inicializaTbl();
 	}
 
-	public void alteraDist(Vertice atual, Aresta aresta, int i) {
-
-		System.out.println("--Compara Vertice E Arestas--");
-		for (Vertice vertice : verticeLista) {
-			System.out.println("for do vertice para pegar o adjacente ");
-			if (vertice.getNome().equals(atual.getAdj().get(i).getNome())) {
-				System.out.println("Distancia atual :" + atual.getDistancia() + " + " + " Valor da aresta "
-						+ aresta.getValor() + " <  Distancia do vertice " + vertice.getDistancia());
-				if (atual.getDistancia() + aresta.getValor() < vertice.getDistancia()) {
-					System.out.println("--Entra pra Alterar--");
-					vertice.setDistancia((atual.getDistancia() + aresta.getValor()));
-					vertice.setPath(atual.getNome());
-				}
-			}
-		}
-	}
-
 	@FXML
 	public void finalizar() {
-		System.out.println("!!!!!!!!!!---LOG-----!!!!!!!!!!");
-		System.out.println("Tamanho da fila antes da repetição: " + fila.tamanho());
+
 		while (fila.tamanho() != 0) {
 			Vertice atual = fila.remove();
-			System.out.println("Tamanho da fila: " + fila.tamanho());
-			System.out.println("Nome do atual: " + atual.getNome());
 			for (int i = 0; i < atual.getAdj().size(); i++) {
 				if (!atual.getAdj().get(i).isPerm()) {
-					System.out.println("--Primeiro FOR--");
 					for (Aresta aresta : arestaLista) {
-						System.out
-								.println("Nome do atual: " + atual.getNome() + " Aresta origem: " + aresta.getOrigem());
-						System.out.println("Nome ADJ do atual: " + atual.getAdj().get(i).getNome() + " Aresta destino: "
-								+ aresta.getDestino());
 						if (ckOrientado.isSelected()) {
 							if ((atual.getNome().equals(aresta.getOrigem()))
 									&& (atual.getAdj().get(i).getNome().equals(aresta.getDestino()))) {
@@ -98,9 +72,20 @@ public class SecundarioController {
 			}
 			insereADJ(atual);
 			atual.setPerm(true);
-			System.out.println("Loop");
 		}
 		tbl.setItems(FXCollections.observableArrayList(verticeLista));
+	}
+
+	public void alteraDist(Vertice atual, Aresta aresta, int i) {
+
+		for (Vertice vertice : verticeLista) {
+			if (vertice.getNome().equals(atual.getAdj().get(i).getNome())) {
+				if (atual.getDistancia() + aresta.getValor() < vertice.getDistancia()) {
+					vertice.setDistancia((atual.getDistancia() + aresta.getValor()));
+					vertice.setPath(atual.getNome());
+				}
+			}
+		}
 	}
 
 	public void insereADJ(Vertice vertice) {
@@ -108,7 +93,6 @@ public class SecundarioController {
 		for (int i = 0; i < vertice.getAdj().size(); i++) {
 			if (!vertice.getAdj().get(i).isPerm()) {
 				if (!(fila.verificaIgual((vertice.getAdj().get(i).getNome())))) {
-					System.out.println("-- Adicionou adjacente-- ");
 					fila.insere(vertice.getAdj().get(i));
 				}
 			}
@@ -118,6 +102,7 @@ public class SecundarioController {
 	@FXML
 	public void adicionaSource() {
 
+		Vertice source = null;
 		for (Vertice vertice : verticeLista) {
 			if (vertice.getNome().equals(txtSource.getText())) {
 				source = vertice;
@@ -128,10 +113,6 @@ public class SecundarioController {
 		fila.insere(source);
 		txtSource.setText("");
 
-		for (Vertice vertice : verticeLista) {
-			System.out.println("VERTICE DO FOR EACH: " + vertice.getNome());
-			System.out.println("Adj do vertice: " + vertice.getNome() + ":>  " + vertice.getAdj().toString());
-		}
 	}
 
 	@FXML
@@ -145,12 +126,8 @@ public class SecundarioController {
 
 		for (Vertice vertice : verticeLista) {
 			if (vertice.getNome().equals(aresta.getOrigem())) {
-				System.out.println(
-						"Nome do vertice1: " + vertice.getNome() + " Nome da origem da aresta: " + aresta.getOrigem());
 				for (Vertice adjacente : verticeLista) {
 					if (adjacente.getNome().equals(aresta.getDestino())) {
-						System.out.println("Nome do vertice2: " + adjacente.getNome() + "Nome do destino da aresta: "
-								+ aresta.getDestino());
 						vertice.getAdj().add(adjacente);
 						adjacente.getAdj().add(vertice);
 					}

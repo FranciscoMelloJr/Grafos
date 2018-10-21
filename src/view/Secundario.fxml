@@ -21,12 +21,12 @@
                <children>
                   <HBox>
                      <children>
-                        <Label text="Protótipo - Dijkstra" underline="true">
+                        <Label text="Dijkstra" underline="true">
                            <font>
                               <Font name="Georgia" size="30.0" />
                            </font>
                            <HBox.margin>
-                              <Insets bottom="10.0" left="40.0" top="10.0" />
+                              <Insets bottom="10.0" left="120.0" top="10.0" />
                            </HBox.margin>
                         </Label>
                      </children>

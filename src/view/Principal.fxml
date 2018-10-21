@@ -19,7 +19,7 @@
                <children>
                   <HBox>
                      <children>
-                        <Label text="Trabalho 1 - Implementação" underline="true">
+                        <Label text="Lista/Matriz" underline="true">
                            <font>
                               <Font name="Georgia" size="30.0" />
                            </font>
@@ -27,7 +27,7 @@
                               <Insets bottom="10.0" left="10.0" top="5.0" />
                            </padding>
                            <HBox.margin>
-                              <Insets left="30.0" right="30.0" top="10.0" />
+                              <Insets left="120.0" right="30.0" top="10.0" />
                            </HBox.margin>
                         </Label>
                      </children>
