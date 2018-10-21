@@ -15,9 +15,8 @@ public class Fila {
 
 	public void prioridade(Elemento novo) {
 
-		int i;
 		atual = inicio;
-		for (i = 1; i <= this.tamanho; i++) {
+		for (int i = 1; i <= this.tamanho; i++) {
 			if (novo.vertice.getDistancia() > atual.vertice.getDistancia()) {
 				if (atual.proximo != null) {
 					atual = atual.proximo;
