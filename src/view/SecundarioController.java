@@ -163,4 +163,16 @@ public class SecundarioController {
 		txtDestino.setText("");
 
 	}
+
+	@FXML
+	public void focusValor() {
+		txtValor.requestFocus();
+	}
+
+	@FXML
+	public void focusDestino() {
+		txtDestino.requestFocus();
+
+	}
+
 }

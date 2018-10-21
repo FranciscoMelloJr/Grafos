@@ -16,7 +16,7 @@
    <children>
       <BorderPane layoutX="171.0" layoutY="137.0" prefHeight="360.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox BorderPane.alignment="CENTER">
+            <VBox maxHeight="360.0" maxWidth="420.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox>
                      <children>
@@ -133,7 +133,7 @@
                               <Insets top="3.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtOrigem" alignment="CENTER" prefHeight="25.0" prefWidth="35.0">
+                        <TextField fx:id="txtOrigem" alignment="CENTER" onAction="#focusDestino" prefHeight="25.0" prefWidth="35.0">
                            <HBox.margin>
                               <Insets top="7.0" />
                            </HBox.margin>
@@ -146,7 +146,7 @@
                               <Insets top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtDestino" alignment="CENTER" onAction="#adicionaAresta" prefHeight="25.0" prefWidth="35.0">
+                        <TextField fx:id="txtDestino" alignment="CENTER" onAction="#focus" prefHeight="25.0" prefWidth="35.0">
                            <HBox.margin>
                               <Insets top="7.0" />
                            </HBox.margin>
@@ -227,12 +227,12 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <TextArea fx:id="txtTexto" editable="false" prefHeight="150.0" prefWidth="150.0">
+                        <TextArea fx:id="txtListaAresta" editable="false" prefHeight="150.0" prefWidth="150.0">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </TextArea>
-                        <TextArea fx:id="txtTexto1" editable="false" prefHeight="150.0" prefWidth="150.0">
+                        <TextArea fx:id="txtListaAdjacencia" editable="false" prefHeight="150.0" prefWidth="150.0">
                            <HBox.margin>
                               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                            </HBox.margin>
@@ -261,12 +261,12 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <TextArea fx:id="txtTexto2" editable="false" prefHeight="150.0" prefWidth="150.0">
+                        <TextArea fx:id="txtMatrizAdjacencia" editable="false" prefHeight="150.0" prefWidth="150.0">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </TextArea>
-                        <TextArea fx:id="txtTexto3" editable="false" prefHeight="150.0" prefWidth="150.0">
+                        <TextArea fx:id="txtMatrizIncidencia" editable="false" prefHeight="150.0" prefWidth="150.0">
                            <HBox.margin>
                               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                            </HBox.margin>
