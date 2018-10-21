@@ -53,14 +53,14 @@ public class PrincipalController {
 					if (ckValorado.isSelected()) {
 						matrizIncidencia[j + 1][i + 1] = String.valueOf(" " + arestaLista.get(i).getValor());
 					} else {
-						matrizIncidencia[j + 1][i + 1] = "1 ";
+						matrizIncidencia[j + 1][i + 1] = "1   ";
 					}
 				}
 				if (arestaLista.get(i).getDestino().equals(verticeLista.get(j))) {
 					if (!ckOrientado.isSelected()) {
-						matrizIncidencia[j + 1][i + 1] = "1 ";
+						matrizIncidencia[j + 1][i + 1] = "1   ";
 						if (arestaLista.get(i).getDestino().equals(arestaLista.get(i).getOrigem())) {
-							matrizIncidencia[j + 1][i + 1] = "2 ";
+							matrizIncidencia[j + 1][i + 1] = "2   ";
 						}
 						if (ckValorado.isSelected()) {
 							matrizIncidencia[j + 1][i + 1] = String.valueOf(" " + arestaLista.get(i).getValor());
@@ -69,30 +69,27 @@ public class PrincipalController {
 						if (ckValorado.isSelected()) {
 							matrizIncidencia[j + 1][i + 1] = String.valueOf("-" + arestaLista.get(i).getValor());
 						} else {
-							matrizIncidencia[j + 1][i + 1] = "-1 ";
+							matrizIncidencia[j + 1][i + 1] = "-1   ";
 						}
 					}
 				}
 			}
 		}
 
-		System.out.println("-----Matriz Incidência----");
 		matrizIncidencia[0][0] = " ";
 		String stringMatrizIncidencia = "";
 		for (int i = 0; i < verticeLista.size() + 1; i++) {
 			for (int j = 0; j < arestaLista.size() + 1; j++) {
 				if (matrizIncidencia[i][j] == null) {
 					if (ckValorado.isSelected()) {
-						matrizIncidencia[i][j] = "X ";
+						matrizIncidencia[i][j] = "X  ";
 					} else {
-						matrizIncidencia[i][j] = "0 ";
+						matrizIncidencia[i][j] = "0  ";
 					}
 				}
-				stringMatrizIncidencia += matrizIncidencia[i][j] + "     ";
-				System.out.print(matrizIncidencia[i][j] + "  ");
+				stringMatrizIncidencia += (matrizIncidencia[i][j] + "  ");
 			}
 			stringMatrizIncidencia += "\n";
-			System.out.println("");
 		}
 		txtMatrizIncidencia.setText(stringMatrizIncidencia);
 	}
@@ -138,7 +135,7 @@ public class PrincipalController {
 				}
 			}
 		}
-		System.out.println("-----Matriz Adjacência-----");
+
 		for (int k = 0; k < verticeLista.size(); k++) {
 			matrizAdjacencia[0][k + 1] = verticeLista.get(k);
 			matrizAdjacencia[k + 1][0] = verticeLista.get(k);
@@ -156,10 +153,8 @@ public class PrincipalController {
 					}
 				}
 				stringMatrizAdjacencia += matrizAdjacencia[i][j] + "  ";
-				System.out.print(matrizAdjacencia[i][j] + " ");
 			}
 			stringMatrizAdjacencia += "\n";
-			System.out.println("");
 		}
 		txtMatrizAdjacencia.setText(stringMatrizAdjacencia);
 	}
@@ -192,7 +187,6 @@ public class PrincipalController {
 			}
 		}
 
-		System.out.println("-----Lista de adjacência----");
 		String stringListaAdjacencia = "";
 		for (int k = 0; k < verticeLista.size(); k++) {
 			stringListaAdjacencia += adjacenciaLista.get(k).nValorado() + "\n";
@@ -202,7 +196,6 @@ public class PrincipalController {
 
 	public void calculaListaAresta() {
 
-		System.out.println("-----Lista de Arestas-----");
 		ArrayList<Aresta> lista = arestaLista;
 
 		if (!ckValorado.isSelected()) {
