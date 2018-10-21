@@ -14,14 +14,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
    <children>
-      <BorderPane layoutX="171.0" layoutY="137.0" prefHeight="250.0" prefWidth="675.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <right>
-            <TextArea prefHeight="41.0" prefWidth="250.0" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </BorderPane.margin>
-            </TextArea>
-         </right>
+      <BorderPane layoutX="171.0" layoutY="137.0" prefHeight="360.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
             <VBox BorderPane.alignment="CENTER">
                <children>
@@ -40,14 +33,14 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox>
+                  <HBox prefHeight="50.0" prefWidth="420.0">
                      <children>
                         <Label text="Orientado">
                            <font>
                               <Font name="Georgia" size="22.0" />
                            </font>
                            <HBox.margin>
-                              <Insets bottom="5.0" left="20.0" top="5.0" />
+                              <Insets bottom="5.0" left="50.0" top="5.0" />
                            </HBox.margin>
                         </Label>
                         <RadioButton fx:id="ckOrientado" mnemonicParsing="false">
@@ -66,7 +59,7 @@
                               <Insets bottom="5.0" left="40.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <RadioButton fx:id="ckValorado" mnemonicParsing="false">
+                        <RadioButton fx:id="ckValorado" mnemonicParsing="false" onAction="#valoradoSN">
                            <font>
                               <Font name="Georgia" size="14.0" />
                            </font>
@@ -76,7 +69,7 @@
                         </RadioButton>
                      </children>
                   </HBox>
-                  <HBox>
+                  <HBox prefHeight="50.0" prefWidth="420.0">
                      <children>
                         <Label text="Conjunto V">
                            <font>
@@ -94,7 +87,7 @@
                               <Insets left="50.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtVertice" alignment="CENTER" prefHeight="25.0" prefWidth="35.0">
+                        <TextField fx:id="txtVertice" alignment="CENTER" onAction="#adicionaVertice" prefHeight="25.0" prefWidth="35.0">
                            <HBox.margin>
                               <Insets bottom="5.0" top="7.0" />
                            </HBox.margin>
@@ -104,25 +97,17 @@
                               <Font name="Georgia" size="30.0" />
                            </font>
                         </Label>
-                        <Label opacity="0.52" text="(1 por vez)">
-                           <font>
-                              <Font name="Georgia" size="15.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="10.0" />
-                           </HBox.margin>
-                        </Label>
                         <Button mnemonicParsing="false" onAction="#adicionaVertice" prefHeight="14.0" prefWidth="78.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-background-color: grey; -fx-border-color: black;" text="Adicionar">
                            <font>
                               <Font name="Georgia" size="13.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="10.0" top="5.0" />
+                              <Insets left="30.0" top="5.0" />
                            </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
-                  <HBox>
+                  <HBox prefHeight="50.0" prefWidth="420.0">
                      <children>
                         <Label text="Conjunto E">
                            <font>
@@ -161,7 +146,7 @@
                               <Insets top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtDestino" alignment="CENTER" prefHeight="25.0" prefWidth="35.0">
+                        <TextField fx:id="txtDestino" alignment="CENTER" onAction="#adicionaAresta" prefHeight="25.0" prefWidth="35.0">
                            <HBox.margin>
                               <Insets top="7.0" />
                            </HBox.margin>
@@ -174,7 +159,7 @@
                               <Insets top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtValor" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" promptText="X">
+                        <TextField fx:id="txtValor" alignment="CENTER" disable="true" onAction="#adicionaAresta" prefHeight="25.0" prefWidth="35.0" promptText="X">
                            <HBox.margin>
                               <Insets top="7.0" />
                            </HBox.margin>
@@ -197,7 +182,7 @@
                               <Font name="Georgia" size="13.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="25.0" right="10.0" top="5.0" />
+                              <Insets left="20.0" right="10.0" top="5.0" />
                            </HBox.margin>
                         </Button>
                      </children>
@@ -212,19 +197,85 @@
                               <Insets bottom="20.0" left="20.0" top="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Label opacity="0.5" text="(X: Caso tenha valor)">
-                           <font>
-                              <Font name="Georgia" size="15.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="125.0" right="10.0" top="5.0" />
-                           </HBox.margin>
-                        </Label>
                      </children>
                   </HBox>
                </children>
             </VBox>
          </left>
+         <right>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Lista de Arestas">
+                           <font>
+                              <Font name="Georgia Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="Lista de Adjacência">
+                           <font>
+                              <Font name="Georgia Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="35.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextArea fx:id="txtTexto" editable="false" prefHeight="150.0" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </TextArea>
+                        <TextArea fx:id="txtTexto1" editable="false" prefHeight="150.0" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                           </HBox.margin>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Matriz de Adjacência">
+                           <font>
+                              <Font name="Georgia Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="Matriz de Incidência ">
+                           <font>
+                              <Font name="Georgia Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextArea fx:id="txtTexto2" editable="false" prefHeight="150.0" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </TextArea>
+                        <TextArea fx:id="txtTexto3" editable="false" prefHeight="150.0" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                           </HBox.margin>
+                        </TextArea>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </right>
       </BorderPane>
    </children>
 </AnchorPane>

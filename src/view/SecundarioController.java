@@ -135,6 +135,7 @@ public class SecundarioController {
 			}
 		}
 		limpaTelaE();
+		txtOrigem.requestFocus();
 	}
 
 	@FXML

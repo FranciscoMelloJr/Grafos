@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import model.Aresta;
 
@@ -21,6 +22,9 @@ public class PrincipalController {
 	TextField txtDestino;
 	@FXML
 	TextField txtValor;
+
+	@FXML
+	TextArea txtTexto;
 
 	ArrayList<String> verticeLista = new ArrayList<String>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
@@ -68,6 +72,7 @@ public class PrincipalController {
 
 		System.out.println("-----Matriz Incidência----");
 		matrizIncidencia[0][0] = " ";
+		String txtMatrizIncidencia = "";
 		for (int i = 0; i < verticeLista.size() + 1; i++) {
 			for (int j = 0; j < arestaLista.size() + 1; j++) {
 				if (matrizIncidencia[i][j] == null) {
@@ -77,11 +82,13 @@ public class PrincipalController {
 						matrizIncidencia[i][j] = "0 ";
 					}
 				}
+				txtMatrizIncidencia += matrizIncidencia[i][j] + "  ";
 				System.out.print(matrizIncidencia[i][j] + "  ");
 			}
+			txtMatrizIncidencia += "\n";
 			System.out.println("");
 		}
-
+		txtTexto.setText(txtMatrizIncidencia);
 	}
 
 	public void calculaMatrizAdjacencia() {
@@ -167,7 +174,8 @@ public class PrincipalController {
 				for (Aresta aresta : arestaLista) {
 					if (verticeLista.get(j).equals(aresta.getDestino())) {
 						if (!aresta.getOrigem().equals(aresta.getDestino())) {
-							adjacenciaLista.get(j).setOrigem(adjacenciaLista.get(j).getOrigem() + " " + aresta.getOrigem());
+							adjacenciaLista.get(j)
+									.setOrigem(adjacenciaLista.get(j).getOrigem() + " " + aresta.getOrigem());
 						}
 					}
 				}
@@ -231,6 +239,7 @@ public class PrincipalController {
 		}
 		arestaLista.add(aresta);
 		limpaTelaE();
+		txtOrigem.requestFocus();
 
 	}
 
@@ -240,6 +249,15 @@ public class PrincipalController {
 		verticeLista.add(txtVertice.getText());
 		txtVertice.setText("");
 
+	}
+
+	@FXML
+	public void valoradoSN() {
+		if (ckValorado.isSelected()) {
+			txtValor.setDisable(false);
+		} else {
+			txtValor.setDisable(true);
+		}
 	}
 
 	@FXML

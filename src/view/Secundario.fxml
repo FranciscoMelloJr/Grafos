@@ -72,7 +72,7 @@
                               <Insets left="60.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtVertice" alignment="CENTER" prefHeight="25.0" prefWidth="35.0">
+                        <TextField fx:id="txtVertice" alignment="CENTER" onAction="#adicionaVertice" prefHeight="25.0" prefWidth="35.0">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="7.0" />
                            </HBox.margin>
@@ -82,20 +82,12 @@
                               <Font name="Georgia" size="30.0" />
                            </font>
                         </Label>
-                        <Label opacity="0.52" text="(1 por vez)">
-                           <font>
-                              <Font name="Georgia" size="15.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="5.0" top="10.0" />
-                           </HBox.margin>
-                        </Label>
                         <Button mnemonicParsing="false" onAction="#adicionaVertice" prefHeight="14.0" prefWidth="78.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-background-color: grey; -fx-border-color: black;" text="Adicionar">
                            <font>
                               <Font name="Georgia" size="13.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="12.0" right="10.0" top="5.0" />
+                              <Insets left="30.0" right="10.0" top="5.0" />
                            </HBox.margin>
                         </Button>
                      </children>
@@ -152,7 +144,7 @@
                               <Insets top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtValor" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" promptText="X">
+                        <TextField fx:id="txtValor" alignment="CENTER" onAction="#adicionaAresta" prefHeight="25.0" prefWidth="35.0" promptText="X">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="7.0" />
                            </HBox.margin>
@@ -175,7 +167,7 @@
                               <Font name="Georgia" size="13.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="25.0" right="10.0" top="5.0" />
+                              <Insets left="20.0" right="10.0" top="5.0" />
                            </HBox.margin>
                         </Button>
                      </children>
@@ -198,7 +190,7 @@
                               <Insets left="25.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtSource" alignment="CENTER" prefHeight="25.0" prefWidth="35.0">
+                        <TextField fx:id="txtSource" alignment="CENTER" onAction="#adicionaSource" prefHeight="25.0" prefWidth="35.0">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="7.0" />
                            </HBox.margin></TextField>
@@ -212,7 +204,7 @@
                               <Font name="Georgia" size="13.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="88.0" right="10.0" top="5.0" />
+                              <Insets left="30.0" right="10.0" top="5.0" />
                            </HBox.margin>
                         </Button>
                      </children>
