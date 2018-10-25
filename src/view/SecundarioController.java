@@ -16,6 +16,8 @@ public class SecundarioController {
 
 	@FXML
 	RadioButton ckOrientado;
+	@FXML
+	RadioButton ckDestiny;
 
 	@FXML
 	TextField txtVertice;
@@ -27,6 +29,8 @@ public class SecundarioController {
 	TextField txtValor;
 	@FXML
 	TextField txtSource;
+	@FXML
+	TextField txtDestiny;
 
 	@FXML
 	TableView<Vertice> tbl;
@@ -40,6 +44,7 @@ public class SecundarioController {
 	ArrayList<Vertice> verticeLista = new ArrayList<Vertice>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
 	Fila fila = new Fila();
+	Vertice destiny;
 
 	@FXML
 	public void initialize() {
@@ -72,6 +77,9 @@ public class SecundarioController {
 			}
 			insereADJ(atual);
 			atual.setPerm(true);
+			if ((ckDestiny.isSelected()) && (destiny.isPerm())) {
+				break;
+			}
 		}
 		tbl.setItems(FXCollections.observableArrayList(verticeLista));
 	}
@@ -96,6 +104,27 @@ public class SecundarioController {
 					fila.insere(vertice.getAdj().get(i));
 				}
 			}
+		}
+	}
+
+	@FXML
+	public void adicionaDestiny() {
+
+		for (Vertice vertice : verticeLista) {
+			if (vertice.getNome().equals(txtDestiny.getText())) {
+				destiny = vertice;
+			}
+		}
+		txtDestiny.setText("");
+
+	}
+
+	@FXML
+	public void destinySN() {
+		if (ckDestiny.isSelected()) {
+			txtDestiny.setDisable(false);
+		} else {
+			txtDestiny.setDisable(true);
 		}
 	}
 
