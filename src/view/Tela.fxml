@@ -40,7 +40,7 @@
          <left>
             <VBox BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#abrePrincipal" prefHeight="75.0" prefWidth="175.0" style="-fx-background-radius: 15;" text="Trabalho 1" underline="true">
+                  <Button mnemonicParsing="false" onAction="#abrePrincipal" prefHeight="75.0" prefWidth="175.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="Trabalho 1">
                      <VBox.margin>
                         <Insets bottom="20.0" left="10.0" top="20.0" />
                      </VBox.margin>
@@ -48,21 +48,21 @@
                         <Font name="Gabriola" size="24.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#abreSecundario" prefHeight="75.0" prefWidth="175.0" style="-fx-background-radius: 15;" text="Trabalho 2" underline="true">
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="10.0" />
-                     </VBox.margin>
+                  <Button mnemonicParsing="false" onAction="#abrePrincipal" prefHeight="75.0" prefWidth="175.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="Trabalho 2">
                      <font>
                         <Font name="Gabriola" size="24.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="10.0" top="20.0" />
+                     </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#abre" prefHeight="75.0" prefWidth="175.0" style="-fx-background-radius: 15;" text="?">
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="10.0" />
-                     </VBox.margin>
+                  <Button mnemonicParsing="false" onAction="#abrePrincipal" prefHeight="75.0" prefWidth="175.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black;" text="?">
                      <font>
                         <Font name="Gabriola" size="24.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="10.0" top="20.0" />
+                     </VBox.margin>
                   </Button>
                </children>
             </VBox>

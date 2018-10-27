@@ -35,6 +35,12 @@ public class PrincipalController {
 	ArrayList<String> verticeLista = new ArrayList<String>();
 	ArrayList<Aresta> arestaLista = new ArrayList<Aresta>();
 
+	public void calculaMatrizDistancia() {
+		
+		//FAZER MATRIZ DISTANCIA 
+		
+	}
+	
 	public void calculaMatrizIncidencia() {
 
 		String matrizIncidencia[][] = new String[verticeLista.size() + 1][arestaLista.size() + 1];
@@ -110,6 +116,7 @@ public class PrincipalController {
 					indiceY = y + 1;
 				}
 			}
+			System.out.println(matrizAdjacencia[indiceX][indiceY]);
 			if ((matrizAdjacencia[indiceX][indiceY] != null)) {
 				int arestas = Integer.parseInt(matrizAdjacencia[indiceX][indiceY]);
 				arestas++;
